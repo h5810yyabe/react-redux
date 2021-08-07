@@ -1,23 +1,37 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 //functional component
 function App() {
-  const greeting = "Hi!!";
-  const dom = <h1 className="foo">{greeting}</h1>;
+  const profiles = [
+    {
+      name: "Taro",age:10
+    },
+    {
+      name: "Hanako",age:5
+    },
+    {
+      name: 1
+    }
+  ];
   return (
-    <Cat></Cat>
-  )
+    <div>
+      {
+        profiles.map((profile,index) => {
+          return <User name={profile.name} age={profile.age} key={index} />;
+        })
+      }
+    </div>
+  );
 }
 
-const Cat = () =>{
-  return <div>Meow!</div>;
+const User = (props) =>{
+return <div>I am {props.name}. and {props.age} years old.</div>;
 }
 
-//class component
-// class App extends Component{
-//   render(){
-//     return(<div>hello world</div>)
-//   }
-// }
+User.propTypes = {
+  name: PropTypes.string,
+  age: PropTypes.number.isRequired
+}
 
 
 export default App;
